@@ -1,14 +1,17 @@
-import { CreateNodecgConstructor, CreateNodecgInstance } from 'ts-nodecg/browser';
+import {
+  CreateNodecgConstructor,
+  CreateNodecgInstance,
+} from 'ts-nodecg/browser';
 
 export type BundleNodecgInstance = CreateNodecgInstance<
-  '<bundle-name>',
+  'ajr-elimination-layouts',
   Configschema,
   ReplicantMap,
   MessageMap
 >;
 
 export type BundleNodecgConstructor = CreateNodecgConstructor<
-  '<bundle-name>',
+  'ajr-elimination-layouts',
   Configschema,
   ReplicantMap,
   MessageMap

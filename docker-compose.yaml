@@ -4,6 +4,6 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - ./:/nodecg/bundles/bundle-name
+      - ./:/nodecg/bundles/ajr-elimination-layouts
       - ./cfg:/nodecg/cfg
       - ./db:/nodecg/db
