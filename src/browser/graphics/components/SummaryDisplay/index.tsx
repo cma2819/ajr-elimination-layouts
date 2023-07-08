@@ -1,9 +1,11 @@
 import React from 'react';
+import { CSSTransition, SwitchTransition } from 'react-transition-group';
 import styled from 'styled-components';
 import { useReplicant } from '../../../hooks/nodecg';
 import { DisplayGame } from './DisplayGame';
 import { DisplaySummary } from './DisplaySummary';
 import { PassBorder } from './PassBorder';
+import './styles.css';
 
 const ParentContainer = styled('div')`
   height: 100%;
@@ -30,31 +32,41 @@ export const SummaryDisplay = () => {
 
   return (
     <ParentContainer>
-      { currentGame && (
-        <Container>
-          <DisplayGame index={currentGame.index} game={currentGame.name} category={currentGame.category} />
-          { currentGame.summaries.map((summary, idx) => (
-            <div 
-              key={summary.rank}
-              style={{ marginLeft: '16px' }}
-            >
-              <DisplaySummary
-                icon={summary.runner.thumbnailUrl}
-                runner={summary.runner.name}
-                done={summary.done}
-                score={summary.score}
-              />
-              {
-                idx === 2 && (
-                  <BorderArea>
-                    <PassBorder />
-                  </BorderArea>
-                )
-              }
-            </div>
-          ))}
-        </Container>
-      )}
+      <SwitchTransition>
+        <CSSTransition
+          key={currentGame?.index}
+          addEndListener={(node, done) => node.addEventListener('transitionend', done, false)}
+          classNames='fade'
+        >
+          <Container>
+            { currentGame && (
+              <>
+                <DisplayGame index={currentGame.index} game={currentGame.name} category={currentGame.category} />
+                { currentGame.summaries.map((summary, idx) => (
+                  <div 
+                    key={summary.rank}
+                    style={{ marginLeft: '16px' }}
+                  >
+                    <DisplaySummary
+                      icon={summary.runner.thumbnailUrl}
+                      runner={summary.runner.name}
+                      done={summary.done}
+                      score={summary.score}
+                    />
+                    {
+                      idx === 2 && (
+                        <BorderArea>
+                          <PassBorder />
+                        </BorderArea>
+                      )
+                    }
+                  </div>
+                ))}
+              </>
+            )}
+          </Container>
+        </CSSTransition>
+      </SwitchTransition>
     </ParentContainer>
   );
 };
