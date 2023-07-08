@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Background from '../../resources/area_runner.png';
+import { FontSize } from '../../rules';
 import { DoneCounter } from './DoneCounter';
 
 type Props = {
@@ -36,9 +37,9 @@ const IconArea = styled('div')<{url: string}>`
 
 const SummaryArea = styled('div')`
     position: absolute;
-    top: 22px;
+    top: 18px;
     left: 144px;
-    font-size: 32px;
+    font-size: ${FontSize.small}px;
     width: 1000px;
     display: grid;
     grid-template-columns: 1fr 1fr auto;
@@ -48,12 +49,12 @@ const SummaryArea = styled('div')`
 
 const RunnerArea = styled('div')`
     grid-column: 1 / 2;
-    font-size: 32px;
+    font-size: ${FontSize.small}px;
 `;
 
 const ScoreArea = styled('div')`
     grid-column: 2 / 3;
-    font-size: 28px;
+    font-size: ${FontSize.small}px;
 `;
 
 const CounterArea = styled('div')`

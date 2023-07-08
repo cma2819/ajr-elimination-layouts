@@ -42,11 +42,15 @@ export const DoneCounter = ({ done, required, max }: Props) => {
   return (
     <Container slots={max}>
       { slots.map((done, index) => (
-        done ? (
-          <DoneSlot index={index} />
-        ) : (
-          index < required ? (<RequiredSlot index={index} />) : (<OptionalSlot index={index} />)
-        )
+        <React.Fragment key={index}>
+          {
+            done ? (
+              <DoneSlot key={index} index={index} />
+            ) : (
+              index < required ? (<RequiredSlot index={index} />) : (<OptionalSlot index={index} />)
+            )
+          }
+        </React.Fragment>
       ))}
     </Container>
   );

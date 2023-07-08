@@ -1,5 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
+import { FontSize } from '../../rules';
 
 export const CurrentTime = () => {
   const [ time, setTime ] = useState<string>('');
@@ -15,7 +16,7 @@ export const CurrentTime = () => {
       backgroundColor: 'red',
       padding: '8px 16px',
       color: 'white',
-      fontSize: '36px',
+      fontSize: `${FontSize.small}px`,
     }}>
       { time }
     </div>
