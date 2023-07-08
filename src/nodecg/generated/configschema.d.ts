@@ -6,5 +6,15 @@
  */
 
 export interface Configschema {
-	someProp: string;
+	defaultJsonId?: string;
+	google: {
+		serviceAccount: {
+			email: string;
+			private: string;
+		};
+	};
+	discord: {
+		guildId: string;
+		token: string;
+	};
 }

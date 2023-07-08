@@ -23,7 +23,15 @@ module.exports = {
             }
         ],
         quotes: ['error', 'single'],
-        indent: ['error', 2],
+        semi: ['error', 'always'],
+        'array-bracket-spacing': ['error', 'always'],
+        'object-curly-spacing': ['error', 'always'],
+        'comma-dangle': [ 'error', 'always-multiline'],
+        indent: 'off',
+        '@typescript-eslint/indent': ['error', 2],
+        '@typescript-eslint/no-unused-vars': ['error', {
+            destructuredArrayIgnorePattern: '^_'
+        }]
     },
     overrides: [
         {

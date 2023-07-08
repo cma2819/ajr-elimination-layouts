@@ -11,5 +11,11 @@ export type MessageMap = {
   'twitch:mark': {
     result: boolean;
   },
-  'twitch:logout': {}
+  'twitch:logout': {},
+  'import-result': {
+    data: string,
+  };
+  'select-current-game': {
+    data: number,
+  }
 };
