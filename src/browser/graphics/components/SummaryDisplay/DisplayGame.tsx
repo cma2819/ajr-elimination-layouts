@@ -30,7 +30,7 @@ const GameArea = styled('div')`
 const CategoryArea = styled('div')`
     position: absolute;
     bottom: 24px;
-    left: 76px;
+    left: 88px;
     font-size: ${FontSize.small}px;
 `;
 
