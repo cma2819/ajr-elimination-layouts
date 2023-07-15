@@ -3,7 +3,12 @@ import path from 'path';
 import globby from 'globby';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
-const targets = ['dashboard', 'graphics'];
+const targets = [ 'dashboard', 'graphics' ];
+const kitId = process.env.kitId ?? '';
+
+if (!kitId) {
+  console.warn('kitId is not specified. Font should not be applied.');
+}
 
 const makeBrowserConfig = (target: string): Configuration => {
 
@@ -24,7 +29,7 @@ const makeBrowserConfig = (target: string): Configuration => {
             loader: 'ts-loader',
             options: {
               configFile: path.resolve(__dirname, '../src/browser/tsconfig.json'),
-            }
+            },
           },
           exclude: /node_modules/,
         },
@@ -32,7 +37,7 @@ const makeBrowserConfig = (target: string): Configuration => {
   
           test: /\.css$/i,
   
-          use: ['style-loader', 'css-loader'],
+          use: [ 'style-loader', 'css-loader' ],
   
         },
         {
@@ -42,14 +47,13 @@ const makeBrowserConfig = (target: string): Configuration => {
         {
   
           test: /\.(woff|woff2|eot|ttf|otf)$/i,
-  
           type: 'asset/resource',
   
         },
       ],
     },
     resolve: {
-      extensions: ['.tsx', '.ts', '.js'],
+      extensions: [ '.tsx', '.ts', '.js' ],
     },
     output: {
       filename: '[name].js',
@@ -60,12 +64,13 @@ const makeBrowserConfig = (target: string): Configuration => {
       Object.keys(entry).map(
         name => new HtmlWebpackPlugin({
           filename: `${name}.html`,
-          chunks: [name],
+          chunks: [ name ],
           template: path.resolve(__dirname, `./templates/${target}.html`),
+          kitId: process.env.kitId,
         })
-      )
+      ),
     ],
   };
-}
+};
 
 export const browserConfig: Array<Configuration> = targets.map(t => makeBrowserConfig(t));
