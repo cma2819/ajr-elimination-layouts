@@ -19,7 +19,9 @@
                 "properties": {
                   "pk": { "type": "string" },
                   "name": { "type": "string" },
-                  "thumbnailUrl": { "type": "string" }
+                  "thumbnailUrl": {
+                    "oneOf": [{ "type": "string" }, { "type": "null" }]
+                  }
                 },
                 "additionalProperties": false,
                 "required": ["pk", "name", "thumbnailUrl"]

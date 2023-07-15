@@ -5,6 +5,7 @@ import { useReplicant } from '../../../hooks/nodecg';
 import { DisplayGame } from './DisplayGame';
 import { DisplaySummary } from './DisplaySummary';
 import { PassBorder } from './PassBorder';
+import DefaultIcon from '../../resources/logo_rect.png';
 import './styles.css';
 
 const ParentContainer = styled('div')`
@@ -48,7 +49,7 @@ export const SummaryDisplay = () => {
                     style={{ marginLeft: '16px' }}
                   >
                     <DisplaySummary
-                      icon={summary.runner.thumbnailUrl}
+                      icon={summary.runner.thumbnailUrl ?? DefaultIcon}
                       runner={summary.runner.name}
                       done={summary.done}
                       score={summary.score}

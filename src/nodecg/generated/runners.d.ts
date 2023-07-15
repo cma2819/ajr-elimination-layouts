@@ -10,5 +10,5 @@ export type Runners = Runner[];
 export interface Runner {
 	pk: string;
 	name: string;
-	thumbnailUrl: string;
+	thumbnailUrl: string | null;
 }

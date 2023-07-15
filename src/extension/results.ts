@@ -73,7 +73,7 @@ export const results = ({ nodecg }: Dependencies): void => {
       runners.map(async (runner) => {
         const discordGuildMember = (await discordApi.get(
           Routes.guildMember(discordConfig.guildId, runner.discordId)
-        )) as { avatar?: string; user: { avatar: string } };
+        )) as { avatar?: string; user: { avatar?: string } };
         const [ guildAvatar, userAvatar ] = [
           discordGuildMember.avatar,
           discordGuildMember.user.avatar,
@@ -83,7 +83,7 @@ export const results = ({ nodecg }: Dependencies): void => {
           name: runner.name,
           thumbnailUrl: guildAvatar
             ? `https://cdn.discordapp.com/guilds/${discordConfig.guildId}/users/${runner.discordId}/avatars/${guildAvatar}.png`
-            : `https://cdn.discordapp.com/avatars/${runner.discordId}/${userAvatar}.png`,
+            : userAvatar ? `https://cdn.discordapp.com/avatars/${runner.discordId}/${userAvatar}.png` : null,
         };
       })
     );

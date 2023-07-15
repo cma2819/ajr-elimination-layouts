@@ -14,7 +14,7 @@ export type CurrentGame = null | {
 		runner: {
 			pk: string;
 			name: string;
-			thumbnailUrl: string;
+			thumbnailUrl: string | null;
 		};
 		done: number;
 		score: string;
