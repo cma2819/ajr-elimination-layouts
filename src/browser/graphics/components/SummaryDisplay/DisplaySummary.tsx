@@ -42,7 +42,7 @@ const SummaryArea = styled('div')`
     font-size: ${FontSize.small}px;
     width: 1000px;
     display: grid;
-    grid-template-columns: 1fr 1fr auto;
+    grid-template-columns: 2fr 1fr auto;
     grid-column-gap: 32px;
     align-items: center;
 `;
