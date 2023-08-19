@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import Background from '../../resources/area_runner.png';
 import { FontSize } from '../../rules';
-import { DoneCounter } from './DoneCounter';
 
 type Props = {
   icon: string;
@@ -57,11 +56,7 @@ const ScoreArea = styled('div')`
     font-size: ${FontSize.small}px;
 `;
 
-const CounterArea = styled('div')`
-    grid-column: 3 / 4;
-`;
-
-export const DisplaySummary = ({ icon, runner, score, done }: Props) => {
+export const DisplaySummary = ({ icon, runner, score }: Props) => {
   return (
     <Panel>
       <IconArea url={icon}></IconArea>
@@ -72,9 +67,6 @@ export const DisplaySummary = ({ icon, runner, score, done }: Props) => {
         <ScoreArea>
           {score}
         </ScoreArea>
-        <CounterArea>
-          <DoneCounter done={done} required={5} max={7} />
-        </CounterArea>
       </SummaryArea>
     </Panel>
   );

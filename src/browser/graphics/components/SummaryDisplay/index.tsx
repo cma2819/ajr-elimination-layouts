@@ -19,7 +19,6 @@ const Container = styled('div')`
   align-items: flex-start;
   justify-content: space-evenly;
   flex-direction: column;
-  row-gap: 8px;
   grid-column: 2 / 3;
 `;
 
@@ -46,7 +45,7 @@ export const SummaryDisplay = () => {
                 { currentGame.summaries.map((summary, idx) => (
                   <div 
                     key={summary.rank}
-                    style={{ marginLeft: '16px' }}
+                    style={{ marginLeft: '16px', transform: `scale(${idx > 2 ? '0.8' : '1'})` }}
                   >
                     <DisplaySummary
                       icon={summary.runner.thumbnailUrl ?? DefaultIcon}

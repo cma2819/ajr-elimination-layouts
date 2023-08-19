@@ -31,7 +31,7 @@ export const results = ({ nodecg }: Dependencies): void => {
       client_email: googleConfig.serviceAccount.email,
       private_key: googleConfig.serviceAccount.private,
     },
-    scopes: [ 'https://www.googleapis.com/auth/drive' ],
+    scopes: ['https://www.googleapis.com/auth/drive'],
   });
   const discordConfig = nodecg.bundleConfig.discord;
   const discordApi = new REST({ version: '10' }).setToken(discordConfig.token);
@@ -62,19 +62,21 @@ export const results = ({ nodecg }: Dependencies): void => {
       index: idx,
       name: game,
       category,
-      summaries: results.map((r) => ({
-        rank: r.rank,
-        runnerPk: r.discordId,
-        done: r.done,
-        score: r.score,
-      })),
+      summaries: results
+        .map((r) => ({
+          rank: r.done < 5 ? 99 : r.rank,
+          runnerPk: r.discordId,
+          done: r.done,
+          score: r.done < 5 ? '記録なし' : r.score,
+        }))
+        .sort((a, b) => a.rank - b.rank),
     }));
     runnersReplicant.value = await Promise.all(
       runners.map(async (runner) => {
         const discordGuildMember = (await discordApi.get(
           Routes.guildMember(discordConfig.guildId, runner.discordId)
         )) as { avatar?: string; user: { avatar?: string } };
-        const [ guildAvatar, userAvatar ] = [
+        const [guildAvatar, userAvatar] = [
           discordGuildMember.avatar,
           discordGuildMember.user.avatar,
         ];
@@ -83,7 +85,9 @@ export const results = ({ nodecg }: Dependencies): void => {
           name: runner.name,
           thumbnailUrl: guildAvatar
             ? `https://cdn.discordapp.com/guilds/${discordConfig.guildId}/users/${runner.discordId}/avatars/${guildAvatar}.png`
-            : userAvatar ? `https://cdn.discordapp.com/avatars/${runner.discordId}/${userAvatar}.png` : null,
+            : userAvatar
+            ? `https://cdn.discordapp.com/avatars/${runner.discordId}/${userAvatar}.png`
+            : null,
         };
       })
     );
@@ -99,7 +103,7 @@ export const results = ({ nodecg }: Dependencies): void => {
     }
     try {
       const url = new URL(urlOrFileId);
-      const [ _empty, _file, _d, fileId ] = url.pathname.split('/');
+      const [_empty, _file, _d, fileId] = url.pathname.split('/');
       await fetchResult(fileId);
     } catch {
       await fetchResult(urlOrFileId);

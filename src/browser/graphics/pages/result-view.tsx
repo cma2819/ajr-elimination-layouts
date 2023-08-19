@@ -8,7 +8,7 @@ import { SummaryDisplay } from '../components/SummaryDisplay';
 
 const ResultsArea = styled('div')`
     position: absolute;
-    top: 256px;
+    top: 32px;
     left: 0px;
     width: 1920px;
     height: 696px;
